@@ -4,16 +4,14 @@ on:
   pull_request:
 
 jobs:
-
   test:
     runs-on: ubuntu-latest
-    container: quay.io/3scale/soyuz:v0.3.0-ci
+    container: quay.io/3scale/soyuz:v4.5.5-ci
     steps:
+      - uses: actions/checkout@v3
 
-    - uses: actions/checkout@v2
+      - name: Run docs tests
+        run: make test-docs
 
-    - name: Run docs tests
-      run: make test-docs
-
-    - name: Run terraform tests
-      run: make test-terraform
+      - name: Run terraform tests
+        run: make test-terraform
