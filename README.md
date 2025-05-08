@@ -1,7 +1,7 @@
 # tf-openshift-3.11
 
-[![format-tests](https://github.com/3scale-ops/tf-openshift-3.11/workflows/format-tests/badge.svg)](https://github.com/3scale-ops/tf-openshift-3.11/actions/workflows/format-tests.yaml?query=workflow%3Aformat-tests)
-[![license](https://badgen.net/github/license/3scale-ops/tf-openshift-3.11)](https://github.com/3scale-ops/tf-openshift-3.11/blob/main/LICENSE)
+[![format-tests](https://github.com/3scale-sre/tf-openshift-3.11/workflows/format-tests/badge.svg)](https://github.com/3scale-sre/tf-openshift-3.11/actions/workflows/format-tests.yaml?query=workflow%3Aformat-tests)
+[![license](https://badgen.net/github/license/3scale-sre/tf-openshift-3.11)](https://github.com/3scale-sre/tf-openshift-3.11/blob/main/LICENSE)
 
 Terraform module to deploy the OpenShift 3.11 cluster required infrastructure and deploys the cluster from an ansible server.
 
@@ -50,20 +50,20 @@ Once the instances are created, it will deploy an ansible configserver pointed b
 
 This instance will:
 
-  - Install basic dependencies required for the cluster deployment (using the user-data)
-  - Copy the rendender ansible inventory with the list of nodes created before [~/openshift-ansible-inventory.cfg](files/ansible-configserver-inventory.tpl)
-  - Copy and run the installer script [~/ansible-configserver-run.sh](files/ansible-configserver-run.sh) that will:
-    - Wait for cloud-init completion
-    - Checkout openshfit-ansible 3.11 GitHub repo
-    - Apply with ansible the `prerequisites` playbook using the rendered inventory
-    - Apply with ansible the `deploy_cluster` playbook using the rendered inventory
-    - Shutdowns itself
+- Install basic dependencies required for the cluster deployment (using the user-data)
+- Copy the rendender ansible inventory with the list of nodes created before [~/openshift-ansible-inventory.cfg](files/ansible-configserver-inventory.tpl)
+- Copy and run the installer script [~/ansible-configserver-run.sh](files/ansible-configserver-run.sh) that will:
+  - Wait for cloud-init completion
+  - Checkout openshfit-ansible 3.11 GitHub repo
+  - Apply with ansible the `prerequisites` playbook using the rendered inventory
+  - Apply with ansible the `deploy_cluster` playbook using the rendered inventory
+  - Shutdowns itself
 
 #### Example parameters
 
 ```terraform
 module "ocp3_11_cluster" {
-  source               = "git@github.com:3scale-ops/tf-openshift-3.11.git?ref=tags/v0.1"
+  source               = "git@github.com:3scale-sre/tf-openshift-3.11.git?ref=tags/v0.1"
   name                 = "ocp3-11-example"
   openshift_key_pair   = "ec2-key"
   dns_zone             = "ZABCD12345"
@@ -351,7 +351,6 @@ master_url = https://master.ocp3-11-example.3sca.net:8443/
 ```
 
 - Connect to the cluster using your `GitHub` user or the admin with the `htpasswd` stored in the vault at https://console.apps.ocp3-11-example.3sca.net/
-
 
 #### Example cluster deletion
 
