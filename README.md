@@ -1,3 +1,7 @@
+# DEPRECATED
+
+---
+
 # tf-openshift-3.11
 
 [![format-tests](https://github.com/3scale-sre/tf-openshift-3.11/workflows/format-tests/badge.svg)](https://github.com/3scale-sre/tf-openshift-3.11/actions/workflows/format-tests.yaml?query=workflow%3Aformat-tests)
